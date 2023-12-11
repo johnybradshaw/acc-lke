@@ -1,7 +1,7 @@
 formatter: markdown table
 
-header-from: ./.docs/header.md #optional
-footer-from: ./.docs/footer.md #optional 
+header-from: ./.config/header.md #optional
+footer-from: ./.config/footer.md #optional 
 
 sections:
   show:
