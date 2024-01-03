@@ -26,7 +26,7 @@ variable "lke_cluster" {
   default = {
     name = "lke-cluster"
     region = "fr-par"
-    k8s_version = "1.27"
+    k8s_version = "1.28"
     high_availability = true
     tags = ["acc", "k8s", "lke"]
     node_pools = [
