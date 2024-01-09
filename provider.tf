@@ -25,5 +25,5 @@ provider "linode" {
 
 # Initialise the Random provider
 provider "random" {
-    # alias = "default"
+    alias = "default"
 }
