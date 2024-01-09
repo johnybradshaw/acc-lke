@@ -8,7 +8,7 @@ resource "random_string" "cluster_suffix" {
   numeric = false
 }
 
-// Create the LKE cluster
+# Create the LKE cluster
 resource "linode_lke_cluster" "lke_cluster" {
   provider = linode.default # Use the default Linode provider
 
@@ -32,7 +32,7 @@ resource "linode_lke_cluster" "lke_cluster" {
     }
   }  
 
-  // Prevent lifecycle changes to the LKE cluster
+  # Prevent lifecycle changes to the LKE cluster
   lifecycle {
     ignore_changes = [
       pool.0.count
@@ -40,7 +40,7 @@ resource "linode_lke_cluster" "lke_cluster" {
   }
 }
 
-// Create variables based on the LKE cluster
+# Create variables based on the LKE cluster
 locals {
     cluster_node_ids = flatten([for pool in linode_lke_cluster.lke_cluster.pool : [for node in pool.nodes : node.instance_id]])
     cluster_tags = jsonencode(concat([var.lke_cluster.name], var.lke_cluster.tags))
@@ -52,7 +52,7 @@ locals {
     user_token          = local.kube_config_map.users[0].user.token
 }
 
-// Update CoreDNS to use external resolver to enable DoT
+# Update CoreDNS to use external resolver to enable DoT
 resource "kubectl_manifest" "coredns" {
 
   depends_on = [ linode_lke_cluster.lke_cluster ]
