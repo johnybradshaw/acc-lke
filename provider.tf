@@ -12,7 +12,7 @@ terraform {
         random = {
             source = "hashicorp/random"
             version = ">= 2.3.0"
-            #configuration_aliases = [ random.default ]
+            configuration_aliases = [ random.default ]
         }
     }
 }
@@ -21,9 +21,4 @@ provider "linode" {
     alias = "default"
     
     token = var.linode_config.api_token
-}
-
-# Initialise the Random provider
-provider "random" {
-    alias = "default"
 }
